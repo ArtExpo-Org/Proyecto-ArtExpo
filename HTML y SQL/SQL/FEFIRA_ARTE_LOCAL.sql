@@ -1,4 +1,3 @@
-
 USE FERIA_ARTE_LOCAL
 create table Feria(
 	feria_id int identity primary key not null,
@@ -18,7 +17,7 @@ create table Artista(
 create table Obra(
 	obra_id int primary key identity not null,
 	titulo varchar(100) not null,
-	año_creacion date not null,
+	aï¿½o_creacion date not null,
 	tecnica varchar(100) not null,
 	precio decimal(6,2) not null,
 	artista_id int,

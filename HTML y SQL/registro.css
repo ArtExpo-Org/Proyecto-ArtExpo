@@ -1,0 +1,64 @@
+.formulario-registro {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.formulario-registro h2 {
+    margin-bottom: 1.5rem;
+    color: rgb(212, 175, 55);
+}
+
+.campo {
+    margin-bottom: 1.5rem;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+.campo input, .campo select, .campo textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.campo select option {
+    background-color: rgb(24, 28, 37);
+}
+
+.boton-registro {
+    background-color: rgb(212, 175, 55);
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 1rem 2rem;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.boton-registro:hover {
+    background-color: white;
+    transform: translateY(-2px);
+}
+
+.terminos {
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.terminos input {
+    margin-right: 10px;
+}
