@@ -1,0 +1,68 @@
+.artistas-container {
+    margin-top: 3rem;
+}
+
+.artista-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.artista-info {
+    margin-bottom: 1.5rem;
+}
+
+.artista-nombre {
+    color: rgb(212, 175, 55);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.artista-contacto {
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.obras-titulo {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+    margin: 1.5rem 0;
+    color: rgb(212, 175, 55);
+}
+
+.obras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.obra-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.obra-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(212, 175, 55, 0.2);
+}
+
+.obra-titulo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.obra-details {
+    font-size: 0.9rem;
+    color: #ddd;
+}
+
+.obra-precio {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: rgb(212, 175, 55);
+}
