@@ -1,13 +1,11 @@
 package Proyecto;
-import java.math.BigDecimal;
-import java.sql.Date;
 import lombok.Getter;
 import lombok.Setter;
 @Getter @Setter
 public class Venta {
     private int ventaId;
-    private BigDecimal precioFinal;
+    private double precioFinal;
     private String nombreComprador;
-    private Date fechaVenta;
+    private String fechaVenta;
     private int obraId;
 }
