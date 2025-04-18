@@ -7,11 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 @Getter @Setter @ToString
 public class Visitante extends Usuario {
-    private String tipoEntrada;
+    private Entradas tipoEntrada;
     private List<Venta> compras;
     private Feria feriaAsistida;
 
-    public Visitante(String nombre, String correo, String contraseña, TipoUsuario tipoUsuario, String tipoEntrada, Feria feriaAsistida) {
+    public Visitante(String nombre, String correo, String contraseña, TipoUsuario tipoUsuario, Entradas tipoEntrada, Feria feriaAsistida) {
         super(nombre, correo, contraseña, tipoUsuario);
         this.tipoEntrada = tipoEntrada;
         this.feriaAsistida = feriaAsistida;
