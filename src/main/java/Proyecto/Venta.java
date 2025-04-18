@@ -11,9 +11,8 @@ public class Venta {
     private Obra obra;
     private Visitante comprador;
 
-    public Venta(double precioFinal, LocalDate fechaVenta, Obra obra, Visitante comprador) {
+    public Venta(LocalDate fechaVenta, Obra obra, Visitante comprador) {
         generarID();
-        this.precioFinal = precioFinal;
         this.fechaVenta = fechaVenta;
         this.obra = obra;
         this.comprador = comprador;

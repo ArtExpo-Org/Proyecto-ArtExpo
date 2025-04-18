@@ -2,6 +2,8 @@ package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.time.LocalDate;
 import java.util.List;
 @Getter @Setter @ToString
 public class Visitante extends Usuario {
@@ -15,7 +17,7 @@ public class Visitante extends Usuario {
         this.feriaAsistida = feriaAsistida;
     }
 
-    public void comprarEntrada(Obra obra, String tipoEntrada){
-        compras.add(new Venta());
+    public void comprarEntrada(LocalDate fechaVenta, Obra obra){
+        compras.add(new Venta(fechaVenta, obra, this));
     }
 }

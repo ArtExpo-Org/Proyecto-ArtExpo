@@ -6,7 +6,6 @@
     <groupId>org.example</groupId>
     <artifactId>ArtExpo</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
@@ -39,5 +38,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
