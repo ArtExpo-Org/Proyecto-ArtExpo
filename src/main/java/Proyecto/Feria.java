@@ -14,13 +14,12 @@ public class Feria {
     private List<Stand> stands;
     private Organizador responsable;
 
-    public Feria(String nombre, String ubicacion, LocalDate fechaInicio, LocalDate fechaFin, Organizador responsable) {
+    public Feria(String nombre, String ubicacion, LocalDate fechaInicio, LocalDate fechaFin) {
         generarID();
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.responsable = responsable;
     }
 
     private static int contador = 0;

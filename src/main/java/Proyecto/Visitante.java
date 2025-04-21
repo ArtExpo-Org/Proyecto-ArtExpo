@@ -17,7 +17,15 @@ public class Visitante extends Usuario {
         this.feriaAsistida = feriaAsistida;
     }
 
-    public void comprarEntrada(LocalDate fechaVenta, Obra obra){
-        compras.add(new Venta(fechaVenta, obra, this));
+    public void comprarEntrada(LocalDate fechaVenta, Artista artista, int numObra) {
+        compras.add(new Venta(fechaVenta, artista.getObras().get(numObra), this));
+    }
+
+    public void Ticket() {
+        double precioFinal = 0;
+        for (Venta venta : compras){
+            precioFinal += venta.getObra().getPrecio();
+        }
+        System.out.println(precioFinal);
     }
 }

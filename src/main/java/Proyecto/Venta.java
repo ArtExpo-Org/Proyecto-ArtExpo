@@ -6,7 +6,6 @@ import java.time.LocalDate;
 @Getter @Setter @ToString
 public class Venta {
     private int ventaId;
-    private double precioFinal;
     private LocalDate fechaVenta;
     private Obra obra;
     private Visitante comprador;
