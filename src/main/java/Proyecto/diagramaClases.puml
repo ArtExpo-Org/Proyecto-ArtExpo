@@ -1,0 +1,130 @@
+@startuml
+' Enumerados
+enum TipoUsuario {
+  ARTISTA
+  VISITANTE
+  ORGANIZADOR
+}
+
+enum Estado {
+  DISPONIBLE
+  OCUPADO
+}
+
+enum Entradas {
+  GENERAL
+  VIP
+  FAMILIAR
+  GRUPO
+  + int precio
+}
+
+' Clases principales
+abstract class Usuario {
+  # int id
+  # String nombre
+  # String correo
+  # String contraseña
+  # TipoUsuario tipoUsuario
+  + generarID()
+}
+
+class Artista {
+  - String biografia
+  - List<Obra> obras
+  - Stand standAsignado
+  + agregarObra()
+  + eliminarObra()
+}
+
+class Organizador {
+  - String rol
+  - List<Feria> feriasOrganizadas
+  + agregarFeria()
+  + eliminarFeria()
+}
+
+class Visitante {
+  - Entradas tipoEntrada
+  - List<Venta> compras
+  - Feria feriaAsistida
+  - double precioTicket
+  + comprarEntrada()
+  + Ticket()
+}
+
+class Feria {
+  - int feriaId
+  - String nombre
+  - String ubicacion
+  - LocalDate fechaInicio
+  - LocalDate fechaFin
+  - List<Stand> stands
+  - Organizador responsable
+  + generarID()
+  + agregarStand()
+  + eliminarStand()
+  + reservarStand()
+  + liberarStand()
+  + asignarResponsable()
+  + retirarResponsable()
+}
+
+class Stand {
+  - int standId
+  - int numero
+  - Estado estado
+  - Feria feria
+  - Artista artistaAsignado
+  + generarID()
+  + obtenerStandDisponible()
+}
+
+class Obra {
+  - int obraId
+  - String titulo
+  - int añoCreacion
+  - String tecnica
+  - double precio
+  - Artista artista
+  + generarID()
+}
+
+class Venta {
+  - int ventaId
+  - LocalDate fechaVenta
+  - Obra obra
+  - Visitante comprador
+  + generarID()
+}
+
+' Relaciones de herencia
+Usuario <|-- Artista
+Usuario <|-- Organizador
+Usuario <|-- Visitante
+
+' Asociaciones
+Usuario -- TipoUsuario
+
+Artista "1" -- "0..*" Obra : crea >
+Artista "0..1" -- "0..1" Stand : es asignado >
+
+Organizador "1" -- "0..*" Feria : organiza >
+
+Visitante -- Entradas
+Visitante "1" -- "0..*" Venta : realiza >
+Visitante "0..*" -- "1" Feria : asiste >
+
+Feria "1" -- "0..*" Stand : contiene >
+Feria "0..*" -- "0..1" Organizador : tiene responsable >
+
+Stand -- Estado
+Stand "0..*" -- "1" Feria : pertenece >
+Stand "0..1" -- "0..1" Artista : es asignado >
+
+Obra "0..*" -- "1" Artista : pertenece >
+
+Venta "0..*" -- "1" Obra : incluye >
+Venta "0..*" -- "1" Visitante : es comprada por >
+
+@enduml

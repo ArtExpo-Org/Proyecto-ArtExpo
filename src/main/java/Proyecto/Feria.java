@@ -3,6 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 @Getter @Setter @ToString
 public class Feria {
@@ -20,6 +21,7 @@ public class Feria {
         this.ubicacion = ubicacion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        stands = new ArrayList<>();
     }
 
     private static int contador = 0;

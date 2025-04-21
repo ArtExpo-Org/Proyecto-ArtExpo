@@ -14,6 +14,7 @@ public class Artista extends Usuario {
         super(nombre, correo, contraseña, tipoUsuario);
         this.standAsignado = standAsignado;
         this.biografia = biografia;
+        obras = new ArrayList<>();
     }
 
     public void agregarObra(String titulo, int añoCreacion, String tecnica, double precio){

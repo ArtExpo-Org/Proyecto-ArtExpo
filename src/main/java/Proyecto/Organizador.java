@@ -12,6 +12,7 @@ public class Organizador extends Usuario {
 
     public Organizador(String nombre, String correo, String contraseña, TipoUsuario tipoUsuario, String rol) {
         super(nombre, correo, contraseña, tipoUsuario);
+        feriasOrganizadas = new ArrayList<>();
         this.rol = rol;
     }
 

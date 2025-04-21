@@ -18,11 +18,15 @@ public class AppArtExpo {
         feria1.reservarStand(artista);
 
         // El artista añade una obra
-        artista.agregarObra("La noche estrellada", 1889, "Óleo sobre lienzo", 100000);
+        artista.agregarObra("La noche estrellada", 1889, "Óleo sobre lienzo", 800);
+        artista.agregarObra("La chica de la perla", 1665, "Óleo sobre lienzo", 1200);
+        artista.agregarObra("El grito", 1893, "Óleo sobre cartón", 1300);
 
         // Un visitante compra una entrada
         Visitante visitante = new Visitante("Almudena", "alma_12@outlook.com", "pass101", TipoUsuario.VISITANTE, Entradas.GENERAL, feria1);
         visitante.comprarEntrada(LocalDate.now(), artista, 0);
+        visitante.comprarEntrada(LocalDate.now(), artista, 2);
         visitante.Ticket();
+        System.out.println(visitante.getPrecioTicket());
     }
 }
