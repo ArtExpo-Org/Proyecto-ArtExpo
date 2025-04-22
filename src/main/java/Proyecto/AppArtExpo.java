@@ -15,6 +15,7 @@ public class AppArtExpo {
 
         // Un artista se registra y reserva el stand
         Artista artista = new Artista("Selena", "SELE81@artDigital.com", 619493323, "pass789", TipoUsuario.ARTISTA, "Artista digital con experiencia en exposiciones internacionales.");
+        feria1.asignarUsuario(artista);
         feria1.reservarStand(artista);
 
         // El artista añade una obra
@@ -23,10 +24,14 @@ public class AppArtExpo {
         artista.agregarObra("El grito", 2025, "Óleo sobre cartón", 1300);
 
         // Un visitante compra un par de entradas
-        Visitante visitante = new Visitante("Almudena", "alma_12@outlook.com", 610843191, "pass101", TipoUsuario.VISITANTE, Entradas.GENERAL, feria1);
-        visitante.comprarEntrada(LocalDate.now(), artista, 0);
-        visitante.comprarEntrada(LocalDate.now(), artista, 2);
-        visitante.Ticket();
-        System.out.println(visitante.getPrecioTicket());
+        Visitante visitante1 = new Visitante("Almudena", "alma_12@outlook.com", 610843191, "pass101", TipoUsuario.VISITANTE);
+        Visitante visitante2 = new Visitante("Almudena", "alma_12@outlook.com", 610843191, "pass101", TipoUsuario.VISITANTE);
+        feria1.asignarUsuario(visitante1);
+        feria1.asignarUsuario(visitante2);
+        visitante1.comprarEntrada(LocalDate.now(), artista, 0);
+        visitante1.comprarEntrada(LocalDate.now(), artista, 2);
+        visitante1.Ticket();
+        System.out.println(feria1.getListaUsuarios());
+        System.out.println(feria2.getListaUsuarios());
     }
 }

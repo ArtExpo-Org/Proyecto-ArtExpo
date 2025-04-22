@@ -5,7 +5,7 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-@Getter @Setter @ToString
+@Getter @Setter
 public class Organizador extends Usuario {
     private String rol;
     private List<Feria> feriasOrganizadas;
@@ -18,11 +18,24 @@ public class Organizador extends Usuario {
 
     public void agregarFeria(Feria feria){
         feriasOrganizadas.add(feria);
-        feria.asignarResponsable(this);
+        feria.asignarUsuario(this);
     }
 
     public void eliminarFeria(Feria feria){
         feriasOrganizadas.remove(feria);
-        feria.retirarResponsable();
+        feria.retirarUsuario(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Organizador{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", telefono=" + telefono +
+                ", contraseña='" + contraseña + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                ", rol='" + rol + '\'' +
+                '}';
     }
 }

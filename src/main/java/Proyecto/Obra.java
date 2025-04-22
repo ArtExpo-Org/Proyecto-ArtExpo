@@ -2,7 +2,7 @@ package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-@Getter @Setter @ToString
+@Getter @Setter
 public class Obra {
     private int obraId;
     private String titulo;
@@ -24,5 +24,17 @@ public class Obra {
     public void generarID(){
         contador++;
         obraId = contador;
+    }
+
+    @Override
+    public String toString() {
+        return "Obra{" +
+                "obraId=" + obraId +
+                ", titulo='" + titulo + '\'' +
+                ", añoCreacion=" + añoCreacion +
+                ", tecnica='" + tecnica + '\'' +
+                ", precio=" + precio +
+                ", artista=" + artista.getNombre() +
+                '}';
     }
 }

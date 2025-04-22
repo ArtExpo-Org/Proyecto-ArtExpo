@@ -2,7 +2,7 @@ package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-@Getter @Setter @ToString
+@Getter @Setter
 public class Stand {
     private int standId;
     private int numero;
@@ -30,5 +30,16 @@ public class Stand {
             }
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Stand{" +
+                "standId=" + standId +
+                ", numero=" + numero +
+                ", estado=" + estado +
+                ", feria=" + feria.getNombre() +
+                ", artistaAsignado=" + artistaAsignado.getNombre() +
+                '}';
     }
 }

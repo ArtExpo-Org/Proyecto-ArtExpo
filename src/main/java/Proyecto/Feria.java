@@ -5,7 +5,7 @@ import lombok.ToString;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-@Getter @Setter @ToString
+@Getter @Setter
 public class Feria {
     private int feriaId;
     private String nombre;
@@ -13,6 +13,7 @@ public class Feria {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private List<Stand> stands;
+    private List<Usuario> listaUsuarios;
     private Organizador responsable;
 
     public Feria(String nombre, String ubicacion, LocalDate fechaInicio, LocalDate fechaFin) {
@@ -22,6 +23,7 @@ public class Feria {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         stands = new ArrayList<>();
+        listaUsuarios = new ArrayList<>();
     }
 
     private static int contador = 0;
@@ -30,6 +32,7 @@ public class Feria {
         feriaId = contador;
     }
 
+    // region Stands
     public void agregarStand(Stand stand){
         stands.add(stand);
     }
@@ -56,12 +59,49 @@ public class Feria {
     public void liberarStand(Stand stand){
         stand.setArtistaAsignado(null);
     }
+    // endregion
 
-    public void asignarResponsable(Organizador organizador){
-        responsable = organizador;
+    // region Usuarios
+    public void asignarUsuario(Usuario usuario){
+        boolean valido = true;
+        for (Usuario usuarioLista : listaUsuarios){
+            if (usuario.correo.equals(usuarioLista.correo)){
+                System.out.println("ERROR: El correo " + usuario.correo + " ya existe");
+                valido = false;
+                break;
+            }
+        }
+        if (valido){
+            if (usuario.getTipoUsuario() == TipoUsuario.VISITANTE) {
+                Visitante visitante = (Visitante) usuario;
+                visitante.setFeriaAsistida(this);
+            } else if (usuario.getTipoUsuario() == TipoUsuario.ORGANIZADOR) {
+                responsable = (Organizador) usuario;
+            }
+            listaUsuarios.add(usuario);
+        }
     }
 
-    public void retirarResponsable(){
-        responsable = null;
+    public void retirarUsuario(Usuario usuario){
+        if (usuario.getTipoUsuario() == TipoUsuario.VISITANTE) {
+            Visitante visitante = (Visitante) usuario;
+            visitante.setFeriaAsistida(null);
+        } else if (usuario.getTipoUsuario() == TipoUsuario.ORGANIZADOR) {
+            responsable = null;
+        }
+        listaUsuarios.remove(usuario);
+    }
+    // endregion
+
+    @Override
+    public String toString() {
+        return "Feria{" +
+                "feriaId=" + feriaId +
+                ", nombre='" + nombre + '\'' +
+                ", ubicacion='" + ubicacion + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", responsable=" + responsable.getNombre() +
+                '}';
     }
 }

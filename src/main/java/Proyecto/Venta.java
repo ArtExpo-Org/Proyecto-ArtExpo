@@ -3,7 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDate;
-@Getter @Setter @ToString
+@Getter @Setter
 public class Venta {
     private int ventaId;
     private LocalDate fechaVenta;
@@ -21,5 +21,15 @@ public class Venta {
     public void generarID(){
         contador++;
         ventaId = contador;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" +
+                "ventaId=" + ventaId +
+                ", fechaVenta=" + fechaVenta +
+                ", obra=" + obra.getTitulo() +
+                ", comprador=" + comprador.getNombre() +
+                '}';
     }
 }
