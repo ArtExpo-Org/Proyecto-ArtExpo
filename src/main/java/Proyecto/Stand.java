@@ -17,14 +17,6 @@ public class Stand {
         this.feria = feria;
     }
 
-    public Stand(int numero, Feria feria, Artista artistaAsignado) {
-        generarID();
-        this.numero = numero;
-        this.estado = Estado.OCUPADO;
-        this.feria = feria;
-        this.artistaAsignado = artistaAsignado;
-    }
-
     private static int contador = 0;
     public void generarID(){
         contador++;

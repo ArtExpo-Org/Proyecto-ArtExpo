@@ -13,8 +13,8 @@ public class Visitante extends Usuario {
     private Feria feriaAsistida;
     private double precioTicket;
 
-    public Visitante(String nombre, String correo, String contraseña, TipoUsuario tipoUsuario, Entradas tipoEntrada, Feria feriaAsistida) {
-        super(nombre, correo, contraseña, tipoUsuario);
+    public Visitante(String nombre, String correo, int telefono, String contraseña, TipoUsuario tipoUsuario, Entradas tipoEntrada, Feria feriaAsistida) {
+        super(nombre, correo, telefono, contraseña, tipoUsuario);
         this.tipoEntrada = tipoEntrada;
         compras = new ArrayList<>();
         this.feriaAsistida = feriaAsistida;

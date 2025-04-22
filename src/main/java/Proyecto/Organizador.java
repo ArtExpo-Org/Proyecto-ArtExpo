@@ -10,8 +10,8 @@ public class Organizador extends Usuario {
     private String rol;
     private List<Feria> feriasOrganizadas;
 
-    public Organizador(String nombre, String correo, String contraseña, TipoUsuario tipoUsuario, String rol) {
-        super(nombre, correo, contraseña, tipoUsuario);
+    public Organizador(String nombre, String correo, int telefono, String contraseña, TipoUsuario tipoUsuario, String rol) {
+        super(nombre, correo, telefono, contraseña, tipoUsuario);
         feriasOrganizadas = new ArrayList<>();
         this.rol = rol;
     }

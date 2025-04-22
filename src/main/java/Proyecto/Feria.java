@@ -43,7 +43,9 @@ public class Feria {
         if (id != 0){
             for (Stand stand : stands){
                 if (stand.getStandId() == id){
+                    artista.setStandAsignado(stand);
                     stand.setArtistaAsignado(artista);
+                    stand.setEstado(Estado.OCUPADO);
                 }
             }
         } else {

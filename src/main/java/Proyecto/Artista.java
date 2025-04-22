@@ -10,9 +10,8 @@ public class Artista extends Usuario {
     private List<Obra> obras;
     private Stand standAsignado;
 
-    public Artista(String nombre, String correo, String contraseña, TipoUsuario tipoUsuario, Stand standAsignado, String biografia) {
-        super(nombre, correo, contraseña, tipoUsuario);
-        this.standAsignado = standAsignado;
+    public Artista(String nombre, String correo, int telefono, String contraseña, TipoUsuario tipoUsuario, String biografia) {
+        super(nombre, correo, telefono, contraseña, tipoUsuario);
         this.biografia = biografia;
         obras = new ArrayList<>();
     }
