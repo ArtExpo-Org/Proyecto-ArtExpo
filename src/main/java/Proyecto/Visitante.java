@@ -1,13 +1,13 @@
 package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 @Getter @Setter
 public class Visitante extends Usuario {
+    static Scanner sc = new Scanner(System.in);
     private Entradas tipoEntrada;
     private List<Venta> compras;
     private Feria feriaAsistida;
@@ -25,7 +25,6 @@ public class Visitante extends Usuario {
     }
 
     public void comprarEntrada(LocalDate fechaVenta, Artista artista, int numObra) {
-        Scanner sc = new Scanner(System.in);
         boolean valido = false;
         while (!valido){
             if (tipoEntrada == null){
@@ -59,12 +58,52 @@ public class Visitante extends Usuario {
         compras.add(new Venta(fechaVenta, artista.getObras().get(numObra), this));
     }
 
+    private TipoPago procesarPago() {
+        System.out.print("Inserte un metodo de pago [Bizum, Paypal, Tarjeta]: ");
+        String metodo = sc.nextLine().toUpperCase();
+        TipoPago pagoSeleccionado = null;
+        boolean valido = false;
+        while (!valido) {
+            switch (metodo) {
+                case "BIZUM":
+                    pagoSeleccionado = TipoPago.BIZUM;
+                    valido = true;
+                    break;
+                case "PAYPAL":
+                    pagoSeleccionado = TipoPago.PAYPAL;
+                    valido = true;
+                    break;
+                case "TARJETA":
+                    pagoSeleccionado = TipoPago.TARJETA;
+                    valido = true;
+                    break;
+                default:
+                    System.out.println("ERROR: Método de pago no válido\n");
+                    System.out.print("Inserte un metodo de pago [Bizum, Paypal, Tarjeta]: ");
+                    metodo = sc.nextLine().toUpperCase();
+                    break;
+            }
+        }
+        return pagoSeleccionado;
+    }
+
     public void Ticket() {
+        TipoPago pago = procesarPago();
         double precioFinal = 0;
         for (Venta venta : compras){
             precioFinal += venta.getObra().getPrecio();
         }
-        precioTicket = precioFinal + tipoEntrada.getPrecio();
+        precioTicket = precioFinal + tipoEntrada.getPrecio() + pago.getComision();
+        notificarArtista();
+    }
+
+    public void notificarArtista(){
+        for (Venta compra : compras) {
+            Notificaciones.notificarVenta(compra.getObra().getArtista()
+                    , compra.getObra().getTitulo()
+                    , compra.getObra().getPrecio()
+            );
+        }
     }
 
     @Override
@@ -75,8 +114,8 @@ public class Visitante extends Usuario {
                 ", correo='" + correo + '\'' +
                 ", telefono=" + telefono +
                 ", contraseña='" + contraseña + '\'' +
-                ", tipoUsuario=" + tipoUsuario +
-                ", tipoEntrada=" + tipoEntrada +
+                ", tipoUsuario=" + tipoUsuario.name() +
+                ", tipoEntrada=" + tipoEntrada.name() +
                 ", compras=" + compras +
                 ", feriaAsistida=" + (feriaAsistida != null ? feriaAsistida.getNombre() : "No asignada") +
                 ", precioTicket=" + precioTicket +

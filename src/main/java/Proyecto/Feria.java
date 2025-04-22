@@ -1,7 +1,6 @@
 package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +56,11 @@ public class Feria {
     }
 
     public void liberarStand(Stand stand){
+        for (Usuario usuario : listaUsuarios){
+            if (((Artista) usuario).getStandAsignado() == stand){
+                ((Artista) usuario).setStandAsignado(null);
+            }
+        }
         stand.setArtistaAsignado(null);
     }
     // endregion

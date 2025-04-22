@@ -1,8 +1,6 @@
 package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
 import java.util.ArrayList;
 import java.util.List;
 @Getter @Setter
@@ -34,7 +32,7 @@ public class Organizador extends Usuario {
                 ", correo='" + correo + '\'' +
                 ", telefono=" + telefono +
                 ", contraseña='" + contraseña + '\'' +
-                ", tipoUsuario=" + tipoUsuario +
+                ", tipoUsuario=" + tipoUsuario.name() +
                 ", rol='" + rol + '\'' +
                 '}';
     }

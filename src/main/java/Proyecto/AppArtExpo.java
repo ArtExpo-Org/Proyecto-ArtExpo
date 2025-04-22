@@ -19,19 +19,28 @@ public class AppArtExpo {
         feria1.reservarStand(artista);
 
         // El artista añade una obra
-        artista.agregarObra("La noche estrellada", 2013, "Óleo sobre lienzo", 800);
+        artista.agregarObra("La noche estrellada", 2013, "Óleo sobre lienzo", 500);
         artista.agregarObra("La chica de la perla", 2002, "Óleo sobre lienzo", 1200);
-        artista.agregarObra("El grito", 2025, "Óleo sobre cartón", 1300);
+        artista.agregarObra("El grito", 2025, "Óleo sobre cartón", 800);
 
-        // Un visitante compra un par de entradas
+        // Crear un par de visitantes
         Visitante visitante1 = new Visitante("Almudena", "alma_12@outlook.com", 610843191, "pass101", TipoUsuario.VISITANTE);
         Visitante visitante2 = new Visitante("Almudena", "alma_12@outlook.com", 610843191, "pass101", TipoUsuario.VISITANTE);
         feria1.asignarUsuario(visitante1);
         feria1.asignarUsuario(visitante2);
+
+        // Un visitante compra un par de entradas
         visitante1.comprarEntrada(LocalDate.now(), artista, 0);
         visitante1.comprarEntrada(LocalDate.now(), artista, 2);
         visitante1.Ticket();
+
+        // Mostrar las ferias
         System.out.println(feria1.getListaUsuarios());
         System.out.println(feria2.getListaUsuarios());
+
+        // Filtro de obras
+        artista.filtroTecnica("Óleo sobre lienzo");
+        artista.filtroAño(2013);
+        artista.filtroPrecioDescendente();
     }
 }
