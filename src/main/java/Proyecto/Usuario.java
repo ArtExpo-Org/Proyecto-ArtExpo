@@ -3,8 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 @Getter @Setter @ToString
-public class Usuario {
-    protected int id;
+public class Usuario extends GeneradorID{
     protected String nombre;
     protected String correo;
     protected int telefono;
@@ -18,12 +17,6 @@ public class Usuario {
         autenticarTelefono(telefono);
         this.contraseña = contraseña;
         this.tipoUsuario = tipoUsuario;
-    }
-
-    private static int contador = 0;
-    public void generarID(){
-        contador++;
-        id = contador;
     }
 
     public void autenticarCorreo(String correo){

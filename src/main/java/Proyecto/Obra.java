@@ -2,8 +2,7 @@ package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 @Getter @Setter
-public class Obra {
-    private int obraId;
+public class Obra extends GeneradorID {
     private String titulo;
     private int añoCreacion;
     private String tecnica;
@@ -19,16 +18,10 @@ public class Obra {
         this.artista = artista;
     }
 
-    private static int contador = 0;
-    public void generarID(){
-        contador++;
-        obraId = contador;
-    }
-
     @Override
     public String toString() {
         return "Obra{" +
-                "obraId=" + obraId +
+                "obraId=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", añoCreacion=" + añoCreacion +
                 ", tecnica='" + tecnica + '\'' +

@@ -3,8 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
 @Getter @Setter
-public class Venta {
-    private int ventaId;
+public class Venta extends GeneradorID {
     private LocalDate fechaVenta;
     private Obra obra;
     private Visitante comprador;
@@ -16,16 +15,10 @@ public class Venta {
         this.comprador = comprador;
     }
 
-    private static int contador = 0;
-    public void generarID(){
-        contador++;
-        ventaId = contador;
-    }
-
     @Override
     public String toString() {
         return "Venta{" +
-                "ventaId=" + ventaId +
+                "ventaId=" + id +
                 ", fechaVenta=" + fechaVenta +
                 ", obra=" + obra.getTitulo() +
                 ", comprador=" + comprador.getNombre() +

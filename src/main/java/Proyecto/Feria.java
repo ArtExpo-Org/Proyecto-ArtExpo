@@ -5,8 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Getter @Setter
-public class Feria {
-    private int feriaId;
+public class Feria extends GeneradorID {
     private String nombre;
     private String ubicacion;
     private LocalDate fechaInicio;
@@ -25,12 +24,6 @@ public class Feria {
         listaUsuarios = new ArrayList<>();
     }
 
-    private static int contador = 0;
-    public void generarID(){
-        contador++;
-        feriaId = contador;
-    }
-
     // region Stands
     public void agregarStand(Stand stand){
         stands.add(stand);
@@ -44,7 +37,7 @@ public class Feria {
         int id = Stand.obtenerStandDisponible(this);
         if (id != 0){
             for (Stand stand : stands){
-                if (stand.getStandId() == id){
+                if (stand.getId() == id){
                     artista.setStandAsignado(stand);
                     stand.setArtistaAsignado(artista);
                     stand.setEstado(Estado.OCUPADO);
@@ -100,7 +93,7 @@ public class Feria {
     @Override
     public String toString() {
         return "Feria{" +
-                "feriaId=" + feriaId +
+                "feriaId=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", ubicacion='" + ubicacion + '\'' +
                 ", fechaInicio=" + fechaInicio +

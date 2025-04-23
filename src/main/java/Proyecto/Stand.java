@@ -2,8 +2,7 @@ package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 @Getter @Setter
-public class Stand {
-    private int standId;
+public class Stand extends GeneradorID {
     private int numero;
     private Estado estado;
     private Feria feria;
@@ -16,16 +15,10 @@ public class Stand {
         this.feria = feria;
     }
 
-    private static int contador = 0;
-    public void generarID(){
-        contador++;
-        standId = contador;
-    }
-
     public static int obtenerStandDisponible(Feria feria){
         for (Stand stand : feria.getStands()){
             if (stand.getEstado().equals(Estado.DISPONIBLE)){
-                return stand.getStandId();
+                return stand.getId();
             }
         }
         return 0;
@@ -34,7 +27,7 @@ public class Stand {
     @Override
     public String toString() {
         return "Stand{" +
-                "standId=" + standId +
+                "standId=" + id +
                 ", numero=" + numero +
                 ", estado=" + estado +
                 ", feria=" + feria.getNombre() +
