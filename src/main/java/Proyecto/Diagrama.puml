@@ -1,0 +1,158 @@
+@startuml
+    ' Clase abstracta base
+    abstract class GeneradorID {
+      # int id
+      - static int contador
+      + generarID()
+    }
+
+    ' Enumerados
+    enum TipoUsuario {
+      ARTISTA
+      VISITANTE
+      ORGANIZADOR
+    }
+
+    enum Estado {
+      DISPONIBLE
+      OCUPADO
+    }
+
+    enum Entradas {
+      GENERAL(15)
+      VIP(45)
+      FAMILIAR(30)
+      GRUPO(120)
+      - int precio
+    }
+
+    enum TipoPago {
+      PAYPAL(0.50)
+      TARJETA(1)
+      BIZUM(1.50)
+      - double comision
+    }
+
+    ' Clases principales
+    class Usuario {
+      # String nombre
+      # String correo
+      # int telefono
+      # String contraseña
+      # TipoUsuario tipoUsuario
+      + autenticarCorreo()
+      + autenticarTelefono()
+    }
+
+    class Artista {
+      - String biografia
+      - List<Obra> obras
+      - Stand standAsignado
+      + agregarObra()
+      + eliminarObra()
+      + filtroTecnica()
+      + filtroAño()
+      + filtroPrecioDescendente()
+    }
+
+    class Organizador {
+      - String rol
+      - List<Feria> feriasOrganizadas
+      + agregarFeria()
+      + eliminarFeria()
+    }
+
+    class Visitante {
+      - Entradas tipoEntrada
+      - List<Venta> compras
+      - Feria feriaAsistida
+      - double precioTicket
+      + comprarEntrada()
+      + Ticket()
+      - procesarPago()
+      + notificarArtista()
+    }
+
+    class Feria {
+      - String nombre
+      - String ubicacion
+      - LocalDate fechaInicio
+      - LocalDate fechaFin
+      - List<Stand> stands
+      - List<Usuario> listaUsuarios
+      - Organizador responsable
+      + agregarStand()
+      + eliminarStand()
+      + reservarStand()
+      + liberarStand()
+      + asignarUsuario()
+      + retirarUsuario()
+    }
+
+    class Stand {
+      - int numero
+      - Estado estado
+      - Feria feria
+      - Artista artistaAsignado
+      + {static} obtenerStandDisponible()
+    }
+
+    class Obra {
+      - String titulo
+      - int añoCreacion
+      - String tecnica
+      - double precio
+      - Artista artista
+    }
+
+    class Venta {
+      - LocalDate fechaVenta
+      - Obra obra
+      - Visitante comprador
+    }
+
+    class Notificaciones {
+      + {static} enviarEmail()
+      + {static} notificarVenta()
+    }
+
+    ' Relaciones de herencia
+    GeneradorID <|-- Usuario
+    GeneradorID <|-- Feria
+    GeneradorID <|-- Stand
+    GeneradorID <|-- Obra
+    GeneradorID <|-- Venta
+
+    Usuario <|-- Artista
+    Usuario <|-- Organizador
+    Usuario <|-- Visitante
+
+    ' Asociaciones
+    Usuario -- TipoUsuario
+
+    Artista -- Obra : crea >
+    Artista -- Stand : se le asigna >
+
+    Organizador -- Feria : organiza >
+
+    Visitante -- Entradas
+    Visitante -- Venta : realiza >
+    Visitante -- Feria : asiste >
+    Visitante ..> TipoPago : usa >
+
+    Feria -- Stand : contiene >
+    Feria -- Usuario : tiene >
+    Feria -- Organizador : tiene responsable >
+
+    Stand -- Estado
+    Stand -- Feria : pertenece >
+    Stand -- Artista : es asignado >
+
+    Obra -- Artista : pertenece >
+
+    Venta -- Obra : incluye >
+    Venta -- Visitante : es realizada >
+
+    Notificaciones ..> Usuario : notifica >
+
+  @enduml
