@@ -3,7 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 @Getter @Setter @ToString
-public class Usuario extends GeneradorID{
+public class Usuario extends GeneradorID {
     protected String nombre;
     protected String correo;
     protected int telefono;

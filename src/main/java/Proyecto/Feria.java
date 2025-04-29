@@ -2,6 +2,7 @@ package Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 @Getter @Setter
@@ -13,6 +14,7 @@ public class Feria extends GeneradorID {
     private List<Stand> stands;
     private List<Usuario> listaUsuarios;
     private Organizador responsable;
+    private List<Evento> eventos;
 
     public Feria(String nombre, String ubicacion, LocalDate fechaInicio, LocalDate fechaFin) {
         generarID();
@@ -22,6 +24,7 @@ public class Feria extends GeneradorID {
         this.fechaFin = fechaFin;
         stands = new ArrayList<>();
         listaUsuarios = new ArrayList<>();
+        eventos = new ArrayList<>();
     }
 
     // region Stands
@@ -90,6 +93,24 @@ public class Feria extends GeneradorID {
     }
     // endregion
 
+    // region Eventos
+    public void agregarEvento(Evento evento) {
+        eventos.add(evento);
+    }
+
+    public void eliminarEvento(Evento evento) {
+        eventos.remove(evento);
+    }
+
+    public void notificarEventos() {
+        for (Evento evento : eventos) {
+            if (evento.getHoraInicio().isAfter(LocalTime.now())) {
+                evento.notificarInicio();
+            }
+        }
+    }
+    // endregion
+
     @Override
     public String toString() {
         return "Feria{" +
@@ -98,7 +119,8 @@ public class Feria extends GeneradorID {
                 ", ubicacion='" + ubicacion + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
-                ", responsable=" + responsable.getNombre() +
+                ", responsable=" + (responsable != null ? responsable.getNombre() : "No asignado") +
+                ", eventos=" + eventos.size() +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package Proyecto;
 import java.time.LocalDate;
+import java.time.LocalTime;
 public class AppArtExpo {
     public static void main(String[] args) {
         // Crear un organizador y una feria
@@ -42,5 +43,10 @@ public class AppArtExpo {
         artista.filtroTecnica("Óleo sobre lienzo");
         artista.filtroAño(2013);
         artista.filtroPrecioDescendente();
+
+        // Evento de la feria
+        feria1.agregarEvento(new Evento("Recogida de Firmas", TipoEvento.FIRMAS, LocalTime.of(10, 0), LocalTime.of(12, 0), feria1));
+        feria1.agregarEvento(new Evento("Conferencia de Arte Digital", TipoEvento.CHARLA, LocalTime.of(15, 0), LocalTime.of(17, 0), feria1));
+        feria1.notificarEventos();
     }
 }
