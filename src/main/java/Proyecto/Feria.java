@@ -40,7 +40,7 @@ public class Feria extends GeneradorID {
         int id = Stand.obtenerStandDisponible(this);
         if (id != 0){
             for (Stand stand : stands){
-                if (stand.getId() == id){
+                if (stand.id == id){
                     artista.setStandAsignado(stand);
                     stand.setArtistaAsignado(artista);
                     stand.setEstado(Estado.OCUPADO);

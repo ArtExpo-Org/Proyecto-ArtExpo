@@ -18,7 +18,7 @@ public class Stand extends GeneradorID {
     public static int obtenerStandDisponible(Feria feria){
         for (Stand stand : feria.getStands()){
             if (stand.getEstado().equals(Estado.DISPONIBLE)){
-                return stand.getId();
+                return stand.id;
             }
         }
         return 0;

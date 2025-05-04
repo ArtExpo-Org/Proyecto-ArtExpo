@@ -1,6 +1,8 @@
 -- Crear la base de datos si no existe
-CREATE DATABASE IF NOT EXISTS FERIA_ARTE_LOCAL;
-USE FERIA_ARTE_LOCAL;
+CREATE DATABASE EXPO_DB
+go
+USE EXPO_DB
+go
 
 CREATE TABLE Usuario (
     usuario_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -81,7 +83,7 @@ CREATE TABLE Evento (
     FOREIGN KEY (feria_id) REFERENCES Feria(feria_id)
 );
 
---Tablas de relación
+-- Tablas de relación
 CREATE TABLE Evento_Participante (
     evento_id INT,
     usuario_id INT,

@@ -1,9 +1,11 @@
 package DAO;
+import Proyecto.TipoUsuario;
 import java.sql.*;
-import java.time.LocalDate;
 public class Conector {
     public static void main(String[] args) {
         Connection conexion = conectar();
+        borrar(conexion);
+        insertar(conexion);
         consulta(conexion);
         desconectar(conexion);
     }
@@ -13,7 +15,7 @@ public class Conector {
         String host = "jdbc:mariadb://localhost:3307/";
         String usuario = "root";
         String password = "";
-        String bd = "instituto";
+        String bd = "expo_db";
         try {
             conexion = DriverManager.getConnection(host + bd, usuario, password);
             System.out.println("Conexión exitosa a la base de datos " + bd);
@@ -35,7 +37,7 @@ public class Conector {
     }
 
     private static void consulta(Connection conexion) {
-        String query = "SELECT * FROM estudiante";
+        String query = "SELECT * FROM usuario";
         Statement stmt;
         ResultSet resultado;
 
@@ -44,11 +46,20 @@ public class Conector {
             resultado = stmt.executeQuery(query);
 
             while (resultado.next()){
-                int nia = resultado.getInt("nia");
+                int id = resultado.getInt("usuario_id");
                 String nombre = resultado.getString("nombre");
-                LocalDate fechaNacimiento = resultado.getDate("fecha_nacimiento").toLocalDate();
+                String correo = resultado.getString("correo");
+                String telefono = resultado.getString("telefono");
+                String contrasena = resultado.getString("contrasena");
+                TipoUsuario tipoUsuario = TipoUsuario.valueOf(resultado.getString("tipo_usuario"));
 
-                System.out.println("nia: " + nia + ", nombre: " + nombre + ", fecha de nacimiento: " + fechaNacimiento);
+                System.out.println("ID: " + id +
+                        ", Nombre: " + nombre +
+                        ", Correo: " + correo +
+                        ", Teléfono: " + telefono +
+                        ", Contraseña: " + contrasena +
+                        ", Tipo de Usuario: " + tipoUsuario
+                );
             }
         } catch (SQLException e) {
             System.out.println("Error al ejecutar la consulta: " + e.getMessage());
@@ -57,7 +68,7 @@ public class Conector {
     }
 
     private static void insertar(Connection conexion) {
-        String query = "INSERT INTO estudiante (nia, nombre, fecha_nacimiento) VALUES ('59424830', 'Hector', '1999-01-01')";
+        String query = "INSERT INTO usuario (nombre, correo, telefono, contrasena, tipo_usuario) VALUES ('Ana', 'anita@outlook.es', '456789123', 'GAMMA123', 'ARTISTA')";
         Statement stmt;
         try {
             stmt = conexion.createStatement();
@@ -70,7 +81,7 @@ public class Conector {
     }
 
     private static void modificar(Connection conexion) {
-        String query = "UPDATE estudiante SET nombre = 'Santaolalla' WHERE nia = 22345678";
+        String query = "UPDATE usuario SET nombre = 'Juan Alberto' WHERE correo = 'juan21@outlook.es'";
         Statement stmt;
         try {
             stmt = conexion.createStatement();
@@ -83,7 +94,7 @@ public class Conector {
     }
 
     private static void borrar(Connection conexion) {
-        String query = "DELETE FROM estudiante WHERE nia = 22345678";
+        String query = "DELETE FROM usuario WHERE correo = 'anita@outlook.es'";
         Statement stmt;
         try {
             stmt = conexion.createStatement();
