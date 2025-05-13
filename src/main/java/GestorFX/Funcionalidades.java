@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.Locale;
+
 public class Funcionalidades {
     public static Connection conectar() {
         Connection conexion;
@@ -154,8 +157,55 @@ public class Funcionalidades {
                 stmt.setString(3, usuario);
                 stmt.executeUpdate();
             }
+
+            int obraId = obtenerObraId(conexion, obraSeleccionada.getTitulo(), obraSeleccionada.getNombreArtista());
+            int compradorId = obtenerCompradorId(conexion, usuario);
+            String query2 = "INSERT INTO venta (fecha_venta, obra_id, comprador_id) VALUES (?, ?, ?)";
+            try (PreparedStatement insertStmt = conexion.prepareStatement(query2)) {
+                LocalDate fechaActual = LocalDate.now();
+                insertStmt.setDate(1, Date.valueOf(fechaActual));
+                insertStmt.setInt(2, obraId);
+                insertStmt.setInt(3, compradorId);
+
+                insertStmt.executeUpdate();
+                System.out.println("Venta registrada con éxito");
+            }
         } catch (SQLException e) {
             System.out.println("Error al realizar la compra: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static int obtenerObraId(Connection conexion, String titulo, String nombreArtista) {
+        String query = "SELECT obra_id FROM obra JOIN usuario ON usuario.usuario_id = obra.artista_id WHERE titulo = ? AND nombre = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.setString(1, titulo);
+            stmt.setString(2, nombreArtista);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("obra_id");
+            } else {
+                throw new SQLException("No se encontró la obra con título: " + titulo + " del artista: " + nombreArtista);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener ID de la obra: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static int obtenerCompradorId(Connection conexion, String usernameOrEmail) {
+        String query = "SELECT usuario_id FROM usuario WHERE correo = ? OR nombre = ?";
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.setString(1, usernameOrEmail);
+            stmt.setString(2, usernameOrEmail);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("usuario_id");
+            } else {
+                throw new SQLException("No se encontró el usuario: " + usernameOrEmail);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener ID del comprador: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }
