@@ -111,11 +111,25 @@ public class HelloController {
             System.out.println("Contraseña actualizada con éxito para el usuario: " + email);
             Stage stage = (Stage) passButton.getScene().getWindow();
             stage.close();
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestorFX/visitante.fxml"));
+                Parent root = loader.load();
+
+                ObrasController controller = loader.getController();
+                controller.recibirNombre(email);
+
+                Stage newStage = new Stage();
+                newStage.setTitle("Panel de VISITANTE");
+                newStage.setScene(new Scene(root));
+                newStage.show();
+            } catch (IOException e) {
+                System.err.println("Error al cargar la ventana: " + e.getMessage());
+            }
         } else {
             errorField.setText("Error al actualizar la contraseña. Inténtelo de nuevo.");
             errorField.setVisible(true);
         }
-
         Funcionalidades.desconectar(conexion);
     }
 }

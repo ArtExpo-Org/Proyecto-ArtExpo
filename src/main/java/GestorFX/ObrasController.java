@@ -108,6 +108,6 @@ public class ObrasController {
 
     public void recibirNombre(String usernameorEmail){
         usr = usernameorEmail.toUpperCase();
-        helloUsr.setText("¡Bienvenido " + usr + "!");
+        helloUsr.setText("¡Bienvenido/a " + usr + "!");
     }
 }
