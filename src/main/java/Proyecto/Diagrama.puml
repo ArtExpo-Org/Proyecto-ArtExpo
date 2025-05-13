@@ -1,0 +1,172 @@
+@startuml
+title Diagrama de Gestión de Feria de Arte
+
+' ========== ENUMS ==========
+enum TipoEvento {
+    CHARLA
+    TALLER
+    DEMOSTRACION
+    NETWORKING
+    SUBASTA
+    FIRMAS
+}
+
+enum TipoPago {
+    PAYPAL(0.50)
+    TARJETA(1)
+    BIZUM(1.50)
+    __
+    + comision: double
+}
+
+enum TipoUsuario {
+    ARTISTA
+    VISITANTE
+    ORGANIZADOR
+}
+
+enum Entradas {
+    GENERAL(15)
+    VIP(45)
+    FAMILIAR(30)
+    GRUPO(120)
+    __
+    + precio: int
+}
+
+enum Estado {
+    DISPONIBLE
+    OCUPADO
+}
+
+' ========== CLASES ABSTRACTAS ==========
+abstract class GeneradorID {
+    # id: int
+    + generarID(): void
+}
+
+' ========== ENTIDADES PRINCIPALES ==========
+class Usuario {
+    # nombre: String
+    # correo: String
+    # telefono: int
+    # contraseña: String
+    # tipoUsuario: TipoUsuario
+    + autenticarCorreo(correo: String): void
+    + autenticarTelefono(telefono: int): void
+}
+
+class Artista {
+    - biografia: String
+    - obras: List<Obra>
+    - standAsignado: Stand
+    + agregarObra(titulo: String, añoCreacion: int, tecnica: String, precio: double): void
+    + eliminarObra(obra: Obra): void
+    + filtroTecnica(tecnica: String): void
+    + filtroAño(año: int): void
+    + filtroPrecioDescendente(): void
+}
+
+class Organizador {
+    - rol: String
+    - feriasOrganizadas: List<Feria>
+    + agregarFeria(feria: Feria): void
+    + eliminarFeria(id: int): void
+}
+
+class Visitante {
+    - tipoEntrada: Entradas
+    - compras: List<Venta>
+    - feriaAsistida: Feria
+    - precioTicket: double
+    + comprarEntrada(fechaVenta: LocalDate, artista: Artista, numObra: int): void
+    + procesarPago(): TipoPago
+    + Ticket(): void
+    + notificarArtista(): void
+}
+
+class Feria {
+    - nombre: String
+    - ubicacion: String
+    - fechaInicio: LocalDate
+    - fechaFin: LocalDate
+    - stands: List<Stand>
+    - listaUsuarios: List<Usuario>
+    - responsable: Organizador
+    - eventos: List<Evento>
+    + agregarStand(stand: Stand): void
+    + eliminarStand(stand: Stand): void
+    + reservarStand(artista: Artista): void
+    + liberarStand(stand: Stand): void
+    + asignarUsuario(usuario: Usuario): void
+    + retirarUsuario(usuario: Usuario): void
+    + agregarEvento(evento: Evento): void
+    + eliminarEvento(evento: Evento): void
+    + notificarEventos(): void
+}
+
+class Stand {
+    - numero: int
+    - estado: Estado
+    - feria: Feria
+    - artistaAsignado: Artista
+    + {static} obtenerStandDisponible(feria: Feria): int
+}
+
+class Obra {
+    - titulo: String
+    - añoCreacion: int
+    - tecnica: String
+    - precio: double
+    - artista: Artista
+}
+
+class Evento {
+    - nombre: String
+    - tipoEvento: TipoEvento
+    - horaInicio: LocalTime
+    - horaFin: LocalTime
+    - feria: Feria
+    - participantes: List<Usuario>
+    + agregarParticipante(usuario: Usuario): void
+    + eliminarParticipante(usuario: Usuario): void
+    + notificarInicio(): void
+}
+
+class Venta {
+    - fechaVenta: LocalDate
+    - obra: Obra
+    - comprador: Visitante
+}
+
+class Notificaciones {
+    {static}
+    + enviarEmail(usuario: Usuario, asunto: String, mensaje: String): void
+    + notificarVenta(artista: Usuario, obraTitulo: String, precio: double): void
+}
+
+' ========== HERENCIAS ==========
+GeneradorID <|-- Usuario
+GeneradorID <|-- Feria
+GeneradorID <|-- Stand
+GeneradorID <|-- Obra
+GeneradorID <|-- Evento
+GeneradorID <|-- Venta
+
+Usuario <|-- Artista
+Usuario <|-- Organizador
+Usuario <|-- Visitante
+
+' ========== RELACIONES ==========
+Stand "0..1" <--> "0..1" Artista : asignado
+Artista "1" <-- "0..*" Obra : "creada por"
+Feria "0..*" <--> "0..1" Organizador : "organizada por"
+Feria "1" <-- "0..*" Stand : "pertenece a"
+Visitante "0..*" --> "0..1" Feria : "asiste a"
+Visitante "1" <-- "0..*" Venta : "realizada por"
+Obra "1" <-- "0..*" Venta : "incluye"
+Feria "1" <-- "0..*" Evento : "programado en"
+Evento "0..*" --> "0..*" Usuario : "participantes"
+Notificaciones --> Usuario : "envía notificaciones a"
+
+@enduml

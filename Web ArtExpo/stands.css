@@ -1,0 +1,187 @@
+.stands-container {
+    margin-top: 3rem;
+}
+
+.mapa-stands {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+}
+
+.grid-stands {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.stand {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stand:hover {
+    transform: translateY(-5px);
+    background-color: rgba(212, 175, 55, 0.2);
+}
+
+.stand.ocupado {
+    border: 2px solid rgb(212, 175, 55);
+}
+
+.stand.disponible {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.numero-stand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.estado-stand {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.disponible .estado-stand {
+    color: #4CAF50;
+}
+
+.ocupado .estado-stand {
+    color: rgb(212, 175, 55);
+}
+
+.stands-lista {
+    margin-top: 3rem;
+}
+
+.stand-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.stand-info {
+    flex: 1;
+}
+
+.stand-numero {
+    color: rgb(212, 175, 55);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.stand-artista {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stand-feria {
+    color: #ccc;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.stand-acciones {
+    display: flex;
+    gap: 1rem;
+}
+
+.boton {
+    background-color: rgb(212, 175, 55);
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.boton:hover {
+    background-color: white;
+    transform: translateY(-2px);
+}
+
+.solicitud-stand {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.solicitud-stand h2 {
+    color: rgb(212, 175, 55);
+    margin-bottom: 1.5rem;
+}
+
+.formulario-solicitud {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+.campo input, .campo select, .campo textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.campo select option {
+    background-color: rgb(24, 28, 37);
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .grid-stands {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stand-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .formulario-solicitud {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-stands {
+        grid-template-columns: 1fr;
+    }
+    
+    .stand {
+        padding: 1rem;
+    }
+}

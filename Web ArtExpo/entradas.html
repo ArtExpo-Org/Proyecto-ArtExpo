@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Entradas - ArtExpo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="entradas.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="artistas.html">Artistas</a></li>
+                <li><a href="stands.html">Stands</a></li>
+                <li><a href="entradas.html">Entradas</a></li>
+            </ul>
+            <ul class="nav-auth">
+                <li><a href="login.html">Iniciar Sesión</a></li>
+                <li><a href="registro.html">Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="inicio">
+            <img src="pictures/ArtExpo.png" alt="Logo ArtExpo" class="logo">
+            <h1>Entradas para ArtExpo</h1>
+            <p>Asegura tu acceso a nuestras exposiciones y eventos especiales</p>
+        </section>
+
+        <section class="entradas-container">
+            <div class="ferias-programadas">
+                <h2>Próximas Ferias</h2>
+                <p>Selecciona la feria a la que deseas asistir</p>
+                
+                <div class="ferias-grid">
+                    <div class="feria-card">
+                        <h3 class="feria-nombre">ArtExpo Madrid 2025</h3>
+                        <p class="feria-fecha">Del 15 al 20 de junio de 2025</p>
+                        <p class="feria-ubicacion">Centro de Exposiciones IFEMA - Madrid</p>
+                        <p>La feria de arte contemporáneo más importante de la capital, con más de 100 artistas locales e internacionales.</p>
+                    </div>
+                    
+                    <div class="feria-card">
+                        <h3 class="feria-nombre">ArtExpo Barcelona 2025</h3>
+                        <p class="feria-fecha">Del 10 al 15 de agosto de 2025</p>
+                        <p class="feria-ubicacion">Centre de Cultura Contemporània - Barcelona</p>
+                        <p>Celebrando el arte mediterráneo y las nuevas tendencias en un espacio cultural emblemático.</p>
+                    </div>
+                    
+                    <div class="feria-card">
+                        <h3 class="feria-nombre">ArtExpo Valencia 2025</h3>
+                        <p class="feria-fecha">Del 5 al 10 de octubre de 2025</p>
+                        <p class="feria-ubicacion">Palacio de Congresos - Valencia</p>
+                        <p>Centrada en las vanguardias artísticas y el diseño, con especial atención a artistas emergentes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tipos-entradas">
+                <h2>Tipos de Entradas - ArtExpo Madrid 2025</h2>
+                <p>Elige el tipo de entrada que mejor se adapte a tus necesidades</p>
+                
+                <div class="entradas-grid">
+                    <div class="entrada-card">
+                        <h3 class="entrada-tipo">Entrada General</h3>
+                        <p class="entrada-precio">15 €</p>
+                        <div class="entrada-detalles">
+                            <ul>
+                                <li>Acceso por un día</li>
+                                <li>Visita a todas las exposiciones</li>
+                                <li>Catálogo digital de artistas</li>
+                            </ul>
+                        </div>
+                        <a href="entradasCompra.html?tipo=General&precio=15&feria=Madrid" class="boton-compra">¡Comprar Ahora!</a>
+                    </div>
+                    
+                    <div class="entrada-card">
+                        <h3 class="entrada-tipo">Entrada VIP</h3>
+                        <p class="entrada-precio">45 €</p>
+                        <div class="entrada-detalles">
+                            <ul>
+                                <li>Acceso por un día</li>
+                                <li>Visita a todas las exposiciones</li>
+                                <li>Visita guiada exclusiva</li>
+                                <li>Encuentro con artistas seleccionados</li>
+                                <li>Catálogo impreso de la feria</li>
+                                <li>Cóctel de bienvenida</li>
+                            </ul>
+                        </div>
+                        <a href="entradasCompra.html?tipo=VIP&precio=45&feria=Madrid" class="boton-compra">¡Comprar Ahora!</a>
+                    </div>
+                    
+                    <div class="entrada-card">
+                        <h3 class="entrada-tipo">Entrada Familiar</h3>
+                        <p class="entrada-precio">30 €</p>
+                        <div class="entrada-detalles">
+                            <ul>
+                                <li>Para 2 adultos y hasta 3 menores</li>
+                                <li>Acceso por un día</li>
+                                <li>Visita a todas las exposiciones</li>
+                                <li>Actividades infantiles</li>
+                                <li>Catálogo digital de artistas</li>
+                            </ul>
+                        </div>
+                        <a href="entradasCompra.html?tipo=Familiar&precio=30&feria=Madrid" class="boton-compra">¡Comprar Ahora!</a>
+                    </div>
+                    
+                    <div class="entrada-card">
+                        <h3 class="entrada-tipo">Entrada Grupo</h3>
+                        <p class="entrada-precio">120 €</p>
+                        <div class="entrada-detalles">
+                            <ul>
+                                <li>Para grupos de 10 personas</li>
+                                <li>Acceso por un día</li>
+                                <li>Visita guiada incluida</li>
+                                <li>Visita a todas las exposiciones</li>
+                                <li>Catálogo digital de artistas</li>
+                            </ul>
+                        </div>
+                        <a href="entradasCompra.html?tipo=Grupo&precio=120&feria=Madrid" class="boton-compra">¡Comprar Ahora!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 - Todos los derechos reservados</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

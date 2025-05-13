@@ -1,0 +1,207 @@
+.entradas-container {
+    margin-top: 3rem;
+}
+
+.ferias-programadas {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.ferias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feria-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.feria-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+.feria-nombre {
+    color: rgb(212, 175, 55);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.feria-fecha, .feria-ubicacion {
+    color: #ddd;
+    margin-bottom: 0.8rem;
+}
+
+.tipos-entradas {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.entradas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.entrada-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.entrada-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+.entrada-tipo {
+    color: rgb(212, 175, 55);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.entrada-precio {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.entrada-detalles {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.entrada-detalles ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.entrada-detalles li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.entrada-detalles li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: rgb(212, 175, 55);
+}
+
+.boton-compra {
+    background-color: rgb(212, 175, 55);
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.boton-compra:hover {
+    background-color: white;
+    transform: translateY(-2px);
+}
+
+.proceso-compra {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.formulario-compra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.resumen-compra {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.elemento-resumen {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-resumen {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Media queries para responsive */
+@media (max-width: 768px) {
+    .ferias-grid, .entradas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .formulario-compra {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .feria-card, .entrada-card {
+        padding: 1rem;
+    }
+    
+    .entrada-tipo {
+        font-size: 1.2rem;
+    }
+    
+    .entrada-precio {
+        font-size: 1.5rem;
+    }
+}
