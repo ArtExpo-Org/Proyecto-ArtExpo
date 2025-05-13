@@ -14,6 +14,7 @@ body {
 header {
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 nav {
@@ -45,25 +46,30 @@ main {
     margin: 0 auto;
     margin-bottom: 4rem;
     padding: 2rem;
+    width: 100%;
 }
 
 section {
-    margin: 4rem;
+    margin: 2rem auto;
     text-align: center;
+    width: 100%;
 }
 
 .logo {
-    height: 300px;
+    height: auto;
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
 .servicios-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -90,9 +96,69 @@ h1 {
     color: black;
 }
 
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
 footer {
     text-align: center;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.3);
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+        align-self: flex-end;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    nav ul.active {
+        max-height: 300px;
+    }
+    
+    nav ul li {
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
+    
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+    
+    nav .nav-menu, nav .nav-auth {
+        display: none;
+    }
+    
+    nav .nav-menu.active, nav .nav-auth.active {
+        display: flex;
+    }
 }

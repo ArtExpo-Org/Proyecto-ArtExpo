@@ -160,3 +160,28 @@
 .campo-completo {
     grid-column: 1 / -1;
 }
+
+@media (max-width: 768px) {
+    .grid-stands {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stand-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .formulario-solicitud {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-stands {
+        grid-template-columns: 1fr;
+    }
+    
+    .stand {
+        padding: 1rem;
+    }
+}

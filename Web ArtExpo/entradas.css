@@ -180,3 +180,28 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
+
+/* Media queries para responsive */
+@media (max-width: 768px) {
+    .ferias-grid, .entradas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .formulario-compra {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .feria-card, .entrada-card {
+        padding: 1rem;
+    }
+    
+    .entrada-tipo {
+        font-size: 1.2rem;
+    }
+    
+    .entrada-precio {
+        font-size: 1.5rem;
+    }
+}
